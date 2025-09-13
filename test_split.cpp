@@ -22,6 +22,7 @@ int main(int argc, char* argv[])
   int evenCount = 0;
 
   // All-Odd List Test
+  cout << "Test 1: All-Odd List Test" << endl; 
   Node* inputList = nullptr;
 	Node* oddList = nullptr;
 	Node* evenList = nullptr;
@@ -29,13 +30,12 @@ int main(int argc, char* argv[])
   inputList = new Node(1,nullptr);
 
   Node* currentNode = inputList;
-  for(int i=3; i <= 7; i++){
+  for(int i=3; i <= 9; i++){
     if (i % 2 == 1){
        currentNode->next = new Node(i, nullptr);
        currentNode = currentNode->next;
     }
   }
-
 
   split(inputList,oddList, evenList);
 
@@ -47,52 +47,112 @@ int main(int argc, char* argv[])
     curr = curr->next;
   }
 
-  cout << "The number of odd items is: " << oddCount << ". The expected amount was: 4" << endl;
+  cout << "The number of odd items is: " << oddCount << ". The expected amount was: 5" << endl << endl;
 
   clearList(inputList);
   clearList(oddList);
   clearList(evenList);
 
   // All-Even List Test
-  
-  // cout << "The number of odd items is: " << oddCount << ". The expected amount was: 4" << endl;
+  cout << "Test 2: All-Even List Test" << endl;
+  oddCount = 0;
+  evenCount = 0;
 
-  // oddCount = 0;
-  // evenCount = 0;
+  inputList = new Node(2,nullptr);
 
-  // inputList = new Node(1,nullptr);
-  // currentNode = inputList;
-  // for(int i=3; i <= 7; i++){
-  //   if (i % 2 == 1){
-  //      currentNode->next = new Node(i, nullptr);
-  //      currentNode = currentNode->next;
-  //   }
-  // }
+  currentNode = inputList;
+  for(int i=4; i <= 10; i++){
+    if (i % 2 == 0){
+       currentNode->next = new Node(i, nullptr);
+       currentNode = currentNode->next;
+    }
+  }
 
-  // split(inputList,oddList, evenList);
+  split(inputList,oddList, evenList);
 
-  // curr = oddList;
+  curr = nullptr;
+  curr = evenList;
  
-  // while(curr != nullptr){
-  //   oddCount++;
-  //   curr = curr->next;
-  // }
+  while(curr != nullptr){
+    evenCount++;
+    curr = curr->next;
+  }
+  
+  cout << "The number of even items is: " << evenCount << ". The expected amount was: 5" << endl << endl;
 
-  // cout << "The number of odd items is: " << oddCount << ". The expected amount was: 4" << endl;
-
-
-
+  clearList(inputList);
+  clearList(oddList);
+  clearList(evenList);
 
   // Empty Test
+  cout << "Test 3: Empty List Test" << endl; 
+  oddCount = 0;
+  evenCount = 0;
+
+  split(inputList,oddList, evenList);
+
+  curr = nullptr;
+  curr = evenList;
+ 
+  while(curr != nullptr){
+    evenCount++;
+    curr = curr->next;
+  }
+
+  curr = nullptr;
+  curr = oddList;
+ 
+  while(curr != nullptr){
+    oddCount++;
+    curr = curr->next;
+  }
+  
+  cout << "The number of even items is: " << evenCount << ". The expected amount was: 0" << endl;
+  cout << "The number of odd items is: " << oddCount << ". The expected amount was: 0" << endl << endl;
+
+  clearList(inputList);
+  clearList(oddList);
+  clearList(evenList);
 
 
-  // Normal Mixed Test
+  // Mixed List Test
+   cout << "Test 4: Mixed List Test" << endl;
+  oddCount = 0;
+  evenCount = 0;
 
+  inputList = new Node(0,nullptr);
 
-  // Duplicates Test
+  currentNode = inputList;
+  for(int i=1; i <= 10; i++){
+      currentNode->next = new Node(i, nullptr);
+      currentNode = currentNode->next;
+  }
 
+  split(inputList,oddList, evenList);
 
+  curr = nullptr;
+  curr = evenList;
+ 
+  while(curr != nullptr){
+    evenCount++;
+    curr = curr->next;
+  }
 
+  curr = nullptr;
+  curr = oddList;
+ 
+  while(curr != nullptr){
+    oddCount++;
+    curr = curr->next;
+  }
+  
+  
+  cout << "The number of even items is: " << evenCount << ". The expected amount was: 6" << endl;
+  cout << "The number of odd items is: " << oddCount << ". The expected amount was: 5" << endl << endl;
+
+  clearList(inputList);
+  clearList(oddList);
+  clearList(evenList);
 }
 
 void clearList(Node* & x){
@@ -100,13 +160,10 @@ void clearList(Node* & x){
   Node* currPos = x;
 
   while(currPos != nullptr){
-    Node* del = currPos;
     Node* temp = currPos->next;
-    delete del;
+    delete currPos;
     currPos = temp;
   }
 
-  delete currPos;
-
-  // delete currPos;
+  x = nullptr;
 }

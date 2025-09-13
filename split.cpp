@@ -18,7 +18,6 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
 // WRITE YOUR CODE HERE
-
   // Empty Case for Input List
   if(in == nullptr){
     return;
@@ -60,7 +59,7 @@ void split(Node*& in, Node*& odds, Node*& evens)
     else{
       odds = new Node(tempVal, odds);
     }
-
+    
     if(in->next == nullptr){ // Current node to be sorted is the last
       delete in;
       in = nullptr;
