@@ -118,7 +118,6 @@ void ULListStr::pop_front(){
       size_--;
     }
     else{
-      cout << "hello, deleting fisrt item since last in array" << endl;
       Item* tempLoc = head_->next;
       delete head_;
       head_ = tempLoc;
@@ -153,7 +152,6 @@ std::string* ULListStr::getValAtLoc(size_t loc) const{
         }
         cnt++;
       }
-      
       curr = curr->next;
     }
   }
